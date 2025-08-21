@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Cctv;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Notification;
+use App\Notifications\LoginNotification;
 
 class StreamController extends Controller
 {
@@ -26,6 +28,11 @@ class StreamController extends Controller
                 escapeshellarg($playlist)
             );
             exec($cmd);
+
+            // Simple notification: inform current user a stream is starting (placeholder for dedicated StreamStartedNotification)
+            if (auth()->check()) {
+                auth()->user()->notify(new LoginNotification());
+            }
         }
 
         $publicUrl = asset('storage/streams/'.$cctv->id.'/index.m3u8');

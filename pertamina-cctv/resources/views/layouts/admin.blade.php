@@ -37,7 +37,7 @@
 					<div class="text-xs uppercase tracking-wide text-gray-500 mt-4">Notification</div>
 					<a class="block px-3 py-2 rounded hover:bg-gray-100 dark:hover:bg-gray-700" href="#">Notifications</a>
 					<div class="text-xs uppercase tracking-wide text-gray-500 mt-4">Message</div>
-					<a class="block px-3 py-2 rounded hover:bg-gray-100 dark:hover:bg-gray-700" href="#">Messages</a>
+					<a class="block px-3 py-2 rounded hover:bg-gray-100 dark:hover:bg-gray-700" href="{{ route('chat.panel') }}">Messages</a>
 					<div class="text-xs uppercase tracking-wide text-gray-500 mt-4">Theme</div>
 					<div class="flex gap-2 px-3 py-2">
 						<button x-data @click="document.documentElement.classList.remove('dark')" class="px-2 py-1 border rounded">Light</button>
