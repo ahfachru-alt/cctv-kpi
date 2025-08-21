@@ -23,4 +23,18 @@ class Cctv extends Model
 	{
 		return $this->belongsTo(Room::class);
 	}
+
+	public function scopeOnline($q){ return $q->where('status','online'); }
+	public function scopeOffline($q){ return $q->where('status','offline'); }
+	public function scopeMaintenance($q){ return $q->where('status','maintenance'); }
+
+	public function getStatusColorAttribute(): string
+	{
+		return match($this->status){
+			'online' => 'green',
+			'offline' => 'red',
+			'maintenance' => 'yellow',
+			default => 'gray',
+		};
+	}
 }

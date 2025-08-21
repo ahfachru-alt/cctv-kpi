@@ -25,6 +25,12 @@ require __DIR__.'/auth.php';
 // Admin authentication routes
 Route::prefix('admin')->name('admin.')->group(function () {
     Route::get('/login', [AdminAuthController::class, 'showLogin'])->name('login');
+    Route::resource('users', \App\Http\Controllers\Admin\UserController::class)->middleware(['auth','role:admin']);
+    Route::resource('buildings', \App\Http\Controllers\Admin\BuildingController::class)->middleware(['auth','role:admin']);
+    Route::resource('rooms', \App\Http\Controllers\Admin\RoomController::class)->middleware(['auth','role:admin']);
+    Route::resource('cctvs', \App\Http\Controllers\Admin\CctvController::class)->middleware(['auth','role:admin']);
+    Route::resource('locations', \App\Http\Controllers\Admin\LocationController::class)->middleware(['auth','role:admin']);
+    Route::resource('contacts', \App\Http\Controllers\Admin\ContactController::class)->middleware(['auth','role:admin']);
 });
 
 // Maps and user pages

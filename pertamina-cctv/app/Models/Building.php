@@ -19,4 +19,10 @@ class Building extends Model
 	{
 		return $this->hasMany(Cctv::class);
 	}
+
+	public function scopeNear($query, float $lat, float $lng, float $delta = 0.05)
+	{
+		return $query->whereBetween('latitude', [$lat-$delta, $lat+$delta])
+			->whereBetween('longitude', [$lng-$delta, $lng+$delta]);
+	}
 }

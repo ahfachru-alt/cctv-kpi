@@ -10,6 +10,7 @@ use Illuminate\Validation\ValidationException;
 use Livewire\Attributes\Validate;
 use Livewire\Form;
 use App\Notifications\LoginNotification;
+use Illuminate\Support\Facades\DB;
 
 class LoginForm extends Form
 {
@@ -42,7 +43,10 @@ class LoginForm extends Form
         RateLimiter::clear($this->throttleKey());
 
         // Send login notification
-        optional(Auth::user())->notify(new LoginNotification());
+        if (Auth::check()) {
+            DB::table('users')->where('id', Auth::id())->update(['last_login_at' => now()]);
+            Auth::user()->notify(new LoginNotification());
+        }
     }
 
     /**
