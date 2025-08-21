@@ -13,7 +13,7 @@ Route::view('dashboard', 'dashboard')
 
 // User and Admin dashboard routes per folders
 Route::view('user/dashboard', 'User/Dashboard/index')->middleware(['auth', 'verified'])->name('user.dashboard');
-Route::view('admin/dashboard', 'Admin/Dashboard/index')->middleware(['auth', 'verified'])->name('admin.dashboard');
+Route::view('admin/dashboard', 'Admin/Dashboard/index')->middleware(['auth', 'verified', 'role:admin'])->name('admin.dashboard');
 
 Route::view('profile', 'profile')
     ->middleware(['auth'])
