@@ -8,7 +8,7 @@
 				<option value="offline">Offline</option>
 				<option value="maintenance">Maintenance</option>
 			</select>
-			<a href="{{ route('admin.cctvs.create') }}" class="px-3 py-2 rounded bg-indigo-600 text-white">Create CCTV</a>
+			<a href="{{ route('admin.cctvs.create') }}" class="inline-flex items-center px-3 py-2 rounded-md font-medium text-white bg-indigo-600 hover:bg-indigo-700">Create CCTV</a>
 		</div>
 	</div>
 	<table class="min-w-full bg-white dark:bg-gray-800 border">
@@ -30,7 +30,8 @@
 				<td class="px-3 py-2">{{ $c->name }}</td>
 				<td class="px-3 py-2">{{ $c->ip_address }}</td>
 				<td class="px-3 py-2">
-					<span class="inline-flex items-center px-2 py-0.5 rounded text-xs text-white" style="background-color: {{ $c->status_color }}">{{ ucfirst($c->status) }}</span>
+					@php $badge = ['online' => 'bg-green-600', 'offline' => 'bg-red-600', 'maintenance' => 'bg-yellow-500'][$c->status] ?? 'bg-gray-500'; @endphp
+					<span class="inline-flex items-center px-2 py-0.5 rounded text-xs text-white {{ $badge }}">{{ ucfirst($c->status) }}</span>
 				</td>
 				<td class="px-3 py-2 text-right flex gap-2 justify-end">
 					<a href="{{ route('admin.cctvs.edit',$c) }}" class="px-2 py-1 rounded bg-gray-200 dark:bg-gray-700">Edit</a>
