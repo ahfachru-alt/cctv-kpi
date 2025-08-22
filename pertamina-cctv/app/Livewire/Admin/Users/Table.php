@@ -11,10 +11,18 @@ class Table extends Component
 	use WithPagination;
 
 	public string $q = '';
-
 	protected $updatesQueryString = ['q'];
+	protected $listeners = ['deleteUser' => 'delete'];
 
 	public function updatingQ() { $this->resetPage(); }
+
+	public function delete(int $id): void
+	{
+		if ($id && ($u = User::find($id))) {
+			$u->delete();
+			$this->resetPage();
+		}
+	}
 
 	public function render()
 	{
