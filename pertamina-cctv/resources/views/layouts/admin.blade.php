@@ -23,6 +23,7 @@
 					<a class="block px-3 py-2 rounded bg-indigo-600 text-white" href="{{ route('dashboard') }}">Dashboard</a>
 					<div class="text-xs uppercase tracking-wide text-gray-500 mt-4">Table</div>
 					<a class="block px-3 py-2 rounded hover:bg-gray-100 dark:hover:bg-gray-700" href="{{ route('admin.users.index') }}">Table User</a>
+					<a class="block px-3 py-2 rounded hover:bg-gray-100 dark:hover:bg-gray-700" href="{{ url('admin/table') }}">User Online/Offline</a>
 					<div class="text-xs uppercase tracking-wide text-gray-500 mt-4">User</div>
 					<a class="block px-3 py-2 rounded hover:bg-gray-100 dark:hover:bg-gray-700" href="{{ route('admin.users.index') }}">User List</a>
 					<a class="block px-3 py-2 rounded hover:bg-gray-100 dark:hover:bg-gray-700" href="{{ route('admin.users.create') }}">Create User</a>

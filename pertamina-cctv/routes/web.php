@@ -36,6 +36,7 @@ Route::view('user/contact', 'User/Contact/index')->middleware(['auth','verified'
 // Admin authentication routes
 Route::prefix('admin')->name('admin.')->group(function () {
     Route::get('/login', [AdminAuthController::class, 'showLogin'])->name('login');
+    Route::get('/table', \App\Http\Controllers\Admin\TableController::class)->middleware(['auth','role:admin'])->name('table');
     Route::view('/register', 'admin/auth/register')->name('register');
     Route::view('/forgot-password', 'admin/auth/forgot-password')->name('password.request');
     Route::view('/reset-password/{token}', 'admin/auth/reset-password')->name('password.reset');
