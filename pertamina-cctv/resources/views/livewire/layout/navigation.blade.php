@@ -42,6 +42,15 @@ new class extends Component
 					<x-nav-link :href="route('user.contact')" :active="request()->routeIs('user.contact')" wire:navigate>
 						Kontak
 					</x-nav-link>
+					<x-nav-link :href="route('user.notifications')" :active="request()->routeIs('user.notifications')" wire:navigate>
+						<div class="inline-flex items-center gap-2">
+							<span>Notifikasi</span>
+							@php $unread = auth()->user()->unreadNotifications()->count(); @endphp
+							@if($unread > 0)
+								<span class="inline-flex items-center justify-center min-w-5 h-5 px-1 rounded-full text-xs text-white bg-indigo-600">{{ $unread }}</span>
+							@endif
+						</div>
+					</x-nav-link>
 				</div>
 			</div>
 
@@ -106,6 +115,9 @@ new class extends Component
 			</x-responsive-nav-link>
 			<x-responsive-nav-link :href="route('user.contact')" :active="request()->routeIs('user.contact')" wire:navigate>
 				Kontak
+			</x-responsive-nav-link>
+			<x-responsive-nav-link :href="route('user.notifications')" :active="request()->routeIs('user.notifications')" wire:navigate>
+				Notifikasi
 			</x-responsive-nav-link>
 		</div>
 
