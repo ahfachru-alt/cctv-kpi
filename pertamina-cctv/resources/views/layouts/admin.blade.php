@@ -20,26 +20,85 @@
 					</div>
 				</div>
 				<nav class="p-4 space-y-2 overflow-y-auto">
-					<a class="block px-3 py-2 rounded bg-indigo-600 text-white" href="{{ route('dashboard') }}">Dashboard</a>
+					<a class="block px-3 py-2 rounded bg-indigo-600 text-white" href="{{ route('dashboard') }}">
+						<span class="inline-flex items-center gap-2">
+							<svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3.75 6.75h16.5M3.75 12h16.5M3.75 17.25h16.5"/></svg>
+							<span>Dashboard</span>
+						</span>
+					</a>
 					<div class="text-xs uppercase tracking-wide text-gray-500 mt-4">Table</div>
-					<a class="block px-3 py-2 rounded hover:bg-gray-100 dark:hover:bg-gray-700" href="{{ route('admin.users.index') }}">Table User</a>
-					<a class="block px-3 py-2 rounded hover:bg-gray-100 dark:hover:bg-gray-700" href="{{ url('admin/table') }}">User Online/Offline</a>
+					<a class="block px-3 py-2 rounded hover:bg-gray-100 dark:hover:bg-gray-700" href="{{ route('admin.users.index') }}">
+						<span class="inline-flex items-center gap-2">
+							<svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4.5 6.75h15m-15 5.25h15m-15 5.25h15"/></svg>
+							<span>Table User</span>
+						</span>
+					</a>
 					<div class="text-xs uppercase tracking-wide text-gray-500 mt-4">User</div>
-					<a class="block px-3 py-2 rounded hover:bg-gray-100 dark:hover:bg-gray-700" href="{{ route('admin.users.index') }}">User List</a>
-					<a class="block px-3 py-2 rounded hover:bg-gray-100 dark:hover:bg-gray-700" href="{{ route('admin.users.create') }}">Create User</a>
+					<a class="block px-3 py-2 rounded hover:bg-gray-100 dark:hover:bg-gray-700" href="{{ route('admin.users.index') }}">
+						<span class="inline-flex items-center gap-2">
+							<svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 19.128a9 9 0 1 0-6 0M12 10.5v6"/></svg>
+							<span>User List</span>
+						</span>
+					</a>
+					<a class="block px-3 py-2 rounded hover:bg-gray-100 dark:hover:bg-gray-700" href="{{ route('admin.users.create') }}">
+						<span class="inline-flex items-center gap-2">
+							<svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 4.5v15m7.5-7.5h-15"/></svg>
+							<span>Create User</span>
+						</span>
+					</a>
 					<div class="text-xs uppercase tracking-wide text-gray-500 mt-4">Maps</div>
-					<a class="block px-3 py-2 rounded hover:bg-gray-100 dark:hover:bg-gray-700" href="{{ route('admin.buildings.index') }}">Maps List</a>
-					<a class="block px-3 py-2 rounded hover:bg-gray-100 dark:hover:bg-gray-700" href="{{ route('admin.buildings.create') }}">Create Maps</a>
+					<a class="block px-3 py-2 rounded hover:bg-gray-100 dark:hover:bg-gray-700" href="{{ route('admin.buildings.index') }}">
+						<span class="inline-flex items-center gap-2">
+							<svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 7.5 9 4.5l6 3 6-3v12l-6 3-6-3-6 3z"/></svg>
+							<span>Maps List</span>
+						</span>
+					</a>
+					<a class="block px-3 py-2 rounded hover:bg-gray-100 dark:hover:bg-gray-700" href="{{ route('admin.buildings.create') }}">
+						<span class="inline-flex items-center gap-2">
+							<svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 4.5v15m7.5-7.5h-15"/></svg>
+							<span>Create Maps</span>
+						</span>
+					</a>
 					<div class="text-xs uppercase tracking-wide text-gray-500 mt-4">Location</div>
-					<a class="block px-3 py-2 rounded hover:bg-gray-100 dark:hover:bg-gray-700" href="{{ route('admin.rooms.index') }}">Location List</a>
-					<a class="block px-3 py-2 rounded hover:bg-gray-100 dark:hover:bg-gray-700" href="{{ route('admin.rooms.create') }}">Create Location</a>
+					<a class="block px-3 py-2 rounded hover:bg-gray-100 dark:hover:bg-gray-700" href="{{ route('admin.rooms.index') }}">
+						<span class="inline-flex items-center gap-2">
+							<svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3.75 3.75h16.5v16.5H3.75zM9 9h6v6H9z"/></svg>
+							<span>Location List</span>
+						</span>
+					</a>
+					<a class="block px-3 py-2 rounded hover:bg-gray-100 dark:hover:bg-gray-700" href="{{ route('admin.rooms.create') }}">
+						<span class="inline-flex items-center gap-2">
+							<svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 4.5v15m7.5-7.5h-15"/></svg>
+							<span>Create Location</span>
+						</span>
+					</a>
 					<div class="text-xs uppercase tracking-wide text-gray-500 mt-4">Contact</div>
-					<a class="block px-3 py-2 rounded hover:bg-gray-100 dark:hover:bg-gray-700" href="{{ route('admin.contacts.index') }}">Contact List</a>
-					<a class="block px-3 py-2 rounded hover:bg-gray-100 dark:hover:bg-gray-700" href="{{ route('admin.contacts.create') }}">Create Contact</a>
+					<a class="block px-3 py-2 rounded hover:bg-gray-100 dark:hover:bg-gray-700" href="{{ route('admin.contacts.index') }}">
+						<span class="inline-flex items-center gap-2">
+							<svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M2.25 6.75 12 12l9.75-5.25M3 17.25h18"/></svg>
+							<span>Contact List</span>
+						</span>
+					</a>
+					<a class="block px-3 py-2 rounded hover:bg-gray-100 dark:hover:bg-gray-700" href="{{ route('admin.contacts.create') }}">
+						<span class="inline-flex items-center gap-2">
+							<svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 4.5v15m7.5-7.5h-15"/></svg>
+							<span>Create Contact</span>
+						</span>
+					</a>
 					<div class="text-xs uppercase tracking-wide text-gray-500 mt-4">Notification</div>
-					<a class="block px-3 py-2 rounded hover:bg-gray-100 dark:hover:bg-gray-700" href="{{ route('admin.notifications') }}">Notifications</a>
+					<a class="block px-3 py-2 rounded hover:bg-gray-100 dark:hover:bg-gray-700" href="{{ route('admin.notifications') }}">
+						<span class="inline-flex items-center gap-2">
+							<svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M14.25 18.75a2.25 2.25 0 1 1-4.5 0"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4.5 9.75a7.5 7.5 0 1 1 15 0c0 3.81 1.5 4.5 1.5 4.5H3s1.5-.69 1.5-4.5z"/></svg>
+							<span>Notifications</span>
+						</span>
+					</a>
 					<div class="text-xs uppercase tracking-wide text-gray-500 mt-4">Message</div>
-					<a class="block px-3 py-2 rounded hover:bg-gray-100 dark:hover:bg-gray-700" href="{{ route('chat.panel') }}">Messages</a>
+					<a class="block px-3 py-2 rounded hover:bg-gray-100 dark:hover:bg-gray-700" href="{{ route('chat.panel') }}">
+						<span class="inline-flex items-center gap-2">
+							<svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4.5 6.75h15v9.75H7.5L4.5 18.75z"/></svg>
+							<span>Messages</span>
+						</span>
+					</a>
 					<div class="text-xs uppercase tracking-wide text-gray-500 mt-4">Theme</div>
 					<div class="flex gap-2 px-3 py-2">
 						<button x-data @click="document.documentElement.classList.remove('dark')" class="px-2 py-1 border rounded">Light</button>
