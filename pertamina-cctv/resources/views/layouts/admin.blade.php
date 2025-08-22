@@ -148,7 +148,9 @@
 						<div class="rounded border border-red-200 bg-red-50 text-red-800 px-4 py-2">{{ session('error') }}</div>
 					</div>
 				@endif
-				@yield('content')
+				<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+					@yield('content')
+				</div>
 			</main>
 		</div>
 		<x-footer />
