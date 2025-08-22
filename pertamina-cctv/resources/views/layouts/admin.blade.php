@@ -21,10 +21,10 @@
 				<nav class="p-4 space-y-2 overflow-y-auto">
 					<a class="block px-3 py-2 rounded bg-indigo-600 text-white" href="{{ route('dashboard') }}">Dashboard</a>
 					<div class="text-xs uppercase tracking-wide text-gray-500 mt-4">Table</div>
-					<a class="block px-3 py-2 rounded hover:bg-gray-100 dark:hover:bg-gray-700" href="#">Table User</a>
+					<a class="block px-3 py-2 rounded hover:bg-gray-100 dark:hover:bg-gray-700" href="{{ route('admin.users.index') }}">Table User</a>
 					<div class="text-xs uppercase tracking-wide text-gray-500 mt-4">User</div>
-					<a class="block px-3 py-2 rounded hover:bg-gray-100 dark:hover:bg-gray-700" href="#">User List</a>
-					<a class="block px-3 py-2 rounded hover:bg-gray-100 dark:hover:bg-gray-700" href="#">Create User</a>
+					<a class="block px-3 py-2 rounded hover:bg-gray-100 dark:hover:bg-gray-700" href="{{ route('admin.users.index') }}">User List</a>
+					<a class="block px-3 py-2 rounded hover:bg-gray-100 dark:hover:bg-gray-700" href="{{ route('admin.users.create') }}">Create User</a>
 					<div class="text-xs uppercase tracking-wide text-gray-500 mt-4">Maps</div>
 					<a class="block px-3 py-2 rounded hover:bg-gray-100 dark:hover:bg-gray-700" href="#">Maps List</a>
 					<a class="block px-3 py-2 rounded hover:bg-gray-100 dark:hover:bg-gray-700" href="#">Create Maps</a>
@@ -49,11 +49,8 @@
 
 			<!-- Content -->
 			<main class="flex-1 min-w-0">
-				{{ $slot ?? '' }}
+				@yield('content')
 			</main>
 		</div>
 	</body>
 </html>
-<div>
-    <!-- An unexamined life is not worth living. - Socrates -->
-</div>
