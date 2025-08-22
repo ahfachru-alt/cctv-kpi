@@ -28,6 +28,7 @@
                 {{ $slot }}
             </div>
         </div>
+        <x-footer />
         @fluxScripts
     </body>
 </html>

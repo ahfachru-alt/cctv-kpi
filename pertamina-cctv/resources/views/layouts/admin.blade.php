@@ -53,6 +53,7 @@
 				@yield('content')
 			</main>
 		</div>
+		<x-footer />
 		@fluxScripts
 	</body>
 </html>
