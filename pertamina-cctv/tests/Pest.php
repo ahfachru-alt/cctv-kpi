@@ -11,8 +11,11 @@
 |
 */
 
+use Livewire\Testing\TestableLivewire as InteractsWithLivewire;
+
 pest()->extend(Tests\TestCase::class)
     ->use(Illuminate\Foundation\Testing\RefreshDatabase::class)
+    ->use(InteractsWithLivewire::class)
     ->in('Feature');
 
 /*
