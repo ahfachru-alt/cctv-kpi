@@ -8,28 +8,32 @@ use Livewire\WithPagination;
 
 class Table extends Component
 {
-	use WithPagination;
+    use WithPagination;
 
-	public string $q = '';
-	protected $listeners = ['deleteBuilding' => 'delete'];
+    public string $q = '';
 
-	public function updatingQ(){ $this->resetPage(); }
+    protected $listeners = ['deleteBuilding' => 'delete'];
 
-	public function delete(int $id): void
-	{
-		if ($id && ($b = Building::find($id))) {
-			$b->delete();
-			$this->resetPage();
-		}
-	}
+    public function updatingQ()
+    {
+        $this->resetPage();
+    }
 
-	public function render()
-	{
-		$buildings = Building::query()
-			->when($this->q !== '', fn($q) => $q->where('name','like','%'.$this->q.'%'))
-			->orderBy('name')
-			->paginate(10);
+    public function delete(int $id): void
+    {
+        if ($id && ($b = Building::find($id))) {
+            $b->delete();
+            $this->resetPage();
+        }
+    }
 
-		return view('livewire.admin.buildings.table', [ 'buildings' => $buildings ]);
-	}
+    public function render()
+    {
+        $buildings = Building::query()
+            ->when($this->q !== '', fn ($q) => $q->where('name', 'like', '%'.$this->q.'%'))
+            ->orderBy('name')
+            ->paginate(10);
+
+        return view('livewire.admin.buildings.table', ['buildings' => $buildings]);
+    }
 }

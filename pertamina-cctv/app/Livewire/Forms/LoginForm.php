@@ -2,15 +2,15 @@
 
 namespace App\Livewire\Forms;
 
+use App\Notifications\LoginNotification;
 use Illuminate\Auth\Events\Lockout;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\Str;
 use Illuminate\Validation\ValidationException;
 use Livewire\Attributes\Validate;
 use Livewire\Form;
-use App\Notifications\LoginNotification;
-use Illuminate\Support\Facades\DB;
 
 class LoginForm extends Form
 {
@@ -45,7 +45,7 @@ class LoginForm extends Form
         // Send login notification
         if (Auth::check()) {
             DB::table('users')->where('id', Auth::id())->update(['last_login_at' => now()]);
-            Auth::user()->notify(new LoginNotification());
+            Auth::user()->notify(new LoginNotification);
         }
     }
 

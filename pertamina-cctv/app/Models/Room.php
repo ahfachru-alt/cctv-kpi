@@ -6,17 +6,17 @@ use Illuminate\Database\Eloquent\Model;
 
 class Room extends Model
 {
-	protected $fillable = [
-		'building_id', 'name', 'floor',
-	];
+    protected $fillable = [
+        'building_id', 'name', 'floor',
+    ];
 
-	public function building()
-	{
-		return $this->belongsTo(Building::class);
-	}
+    public function building()
+    {
+        return $this->belongsTo(Building::class);
+    }
 
-	public function cctvs()
-	{
-		return $this->hasMany(Cctv::class);
-	}
+    public function cctvs()
+    {
+        return $this->hasMany(Cctv::class);
+    }
 }

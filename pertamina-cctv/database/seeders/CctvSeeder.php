@@ -2,9 +2,10 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Building;
+use App\Models\Cctv;
+use App\Models\Room;
 use Illuminate\Database\Seeder;
-use App\Models\{Building, Room, Cctv};
 
 class CctvSeeder extends Seeder
 {
@@ -30,7 +31,7 @@ class CctvSeeder extends Seeder
                 'floor' => (($i % 5) + 1),
             ]);
 
-            $octet = str_pad((string)$i, 3, '0', STR_PAD_LEFT);
+            $octet = str_pad((string) $i, 3, '0', STR_PAD_LEFT);
             $ip = $ipPrefix.($i);
             $rtsp = "rtsp://admin:password.123@{$ip}/streaming/channels/";
 
@@ -40,7 +41,7 @@ class CctvSeeder extends Seeder
                     'building_id' => $building->id,
                     'room_id' => $room->id,
                     'rtsp_url' => $rtsp,
-                    'status' => ['online','offline','maintenance'][$i % 3],
+                    'status' => ['online', 'offline', 'maintenance'][$i % 3],
                     'ip_address' => $ip,
                 ]
             );

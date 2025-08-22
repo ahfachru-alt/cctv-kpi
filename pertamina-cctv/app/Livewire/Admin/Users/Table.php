@@ -8,32 +8,37 @@ use Livewire\WithPagination;
 
 class Table extends Component
 {
-	use WithPagination;
+    use WithPagination;
 
-	public string $q = '';
-	protected $updatesQueryString = ['q'];
-	protected $listeners = ['deleteUser' => 'delete'];
+    public string $q = '';
 
-	public function updatingQ() { $this->resetPage(); }
+    protected $updatesQueryString = ['q'];
 
-	public function delete(int $id): void
-	{
-		if ($id && ($u = User::find($id))) {
-			$u->delete();
-			$this->resetPage();
-		}
-	}
+    protected $listeners = ['deleteUser' => 'delete'];
 
-	public function render()
-	{
-		$users = User::query()
-			->when($this->q !== '', fn($q) => $q->where(function($qq){
-				$qq->where('name','like','%'.$this->q.'%')
-					->orWhere('email','like','%'.$this->q.'%');
-			}))
-			->orderByDesc('id')
-			->paginate(10);
+    public function updatingQ()
+    {
+        $this->resetPage();
+    }
 
-		return view('livewire.admin.users.table', [ 'users' => $users ]);
-	}
+    public function delete(int $id): void
+    {
+        if ($id && ($u = User::find($id))) {
+            $u->delete();
+            $this->resetPage();
+        }
+    }
+
+    public function render()
+    {
+        $users = User::query()
+            ->when($this->q !== '', fn ($q) => $q->where(function ($qq) {
+                $qq->where('name', 'like', '%'.$this->q.'%')
+                    ->orWhere('email', 'like', '%'.$this->q.'%');
+            }))
+            ->orderByDesc('id')
+            ->paginate(10);
+
+        return view('livewire.admin.users.table', ['users' => $users]);
+    }
 }

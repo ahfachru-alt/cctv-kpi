@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 
 class GoogleAuthController extends Controller
@@ -35,9 +35,13 @@ class GoogleAuthController extends Controller
             ['name' => $name, 'password' => Hash::make(str()->random(32)), 'email_verified_at' => now()]
         );
         // Ensure base role
-        try { $user->assignRole('user'); } catch (\Throwable $e) {}
+        try {
+            $user->assignRole('user');
+        } catch (\Throwable $e) {
+        }
 
         Auth::login($user, remember: true);
+
         return redirect()->route('dashboard');
     }
 }
