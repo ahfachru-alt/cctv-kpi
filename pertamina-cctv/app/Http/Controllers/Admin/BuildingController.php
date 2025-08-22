@@ -20,7 +20,18 @@ class BuildingController extends Controller
 
 	public function store(Request $request)
 	{
-		return back();
+		$validated = $request->validate([
+			'name' => ['required','string','max:255'],
+			'latitude' => ['nullable','numeric'],
+			'longitude' => ['nullable','numeric'],
+			'address' => ['nullable','string','max:255'],
+		]);
+		$building = Building::create($validated);
+		if ($request->expectsJson()) {
+			return response()->json(['data' => $building], 201);
+		}
+		session()->flash('success', 'Building created successfully');
+		return redirect()->route('admin.buildings.index');
 	}
 
 	public function show(Building $building)
@@ -35,12 +46,27 @@ class BuildingController extends Controller
 
 	public function update(Request $request, Building $building)
 	{
-		return back();
+		$validated = $request->validate([
+			'name' => ['required','string','max:255'],
+			'latitude' => ['nullable','numeric'],
+			'longitude' => ['nullable','numeric'],
+			'address' => ['nullable','string','max:255'],
+		]);
+		$building->update($validated);
+		if ($request->expectsJson()) {
+			return response()->json(['data' => $building], 200);
+		}
+		session()->flash('success', 'Building updated successfully');
+		return redirect()->route('admin.buildings.index');
 	}
 
 	public function destroy(Building $building)
 	{
 		$building->delete();
+		if (request()->expectsJson()) {
+			return response()->json([], 204);
+		}
+		session()->flash('success', 'Building deleted');
 		return back();
 	}
 }

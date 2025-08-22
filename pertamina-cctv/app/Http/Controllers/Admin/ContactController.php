@@ -20,7 +20,20 @@ class ContactController extends Controller
 
 	public function store(Request $request)
 	{
-		return back();
+		$validated = $request->validate([
+			'name' => ['required','string','max:255'],
+			'email' => ['nullable','email','max:255'],
+			'phone' => ['nullable','string','max:50'],
+			'whatsapp' => ['nullable','string','max:50'],
+			'address' => ['nullable','string','max:255'],
+			'message' => ['nullable','string'],
+		]);
+		$contact = Contact::create($validated);
+		if ($request->expectsJson()) {
+			return response()->json(['data' => $contact], 201);
+		}
+		session()->flash('success', 'Contact created successfully');
+		return redirect()->route('admin.contacts.index');
 	}
 
 	public function show(Contact $contact)
@@ -35,12 +48,29 @@ class ContactController extends Controller
 
 	public function update(Request $request, Contact $contact)
 	{
-		return back();
+		$validated = $request->validate([
+			'name' => ['required','string','max:255'],
+			'email' => ['nullable','email','max:255'],
+			'phone' => ['nullable','string','max:50'],
+			'whatsapp' => ['nullable','string','max:50'],
+			'address' => ['nullable','string','max:255'],
+			'message' => ['nullable','string'],
+		]);
+		$contact->update($validated);
+		if ($request->expectsJson()) {
+			return response()->json(['data' => $contact], 200);
+		}
+		session()->flash('success', 'Contact updated successfully');
+		return redirect()->route('admin.contacts.index');
 	}
 
 	public function destroy(Contact $contact)
 	{
 		$contact->delete();
+		if (request()->expectsJson()) {
+			return response()->json([], 204);
+		}
+		session()->flash('success', 'Contact deleted');
 		return back();
 	}
 }

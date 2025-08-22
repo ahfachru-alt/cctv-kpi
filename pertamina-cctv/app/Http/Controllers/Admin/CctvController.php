@@ -20,7 +20,20 @@ class CctvController extends Controller
 
 	public function store(Request $request)
 	{
-		return back();
+		$validated = $request->validate([
+			'building_id' => ['required','exists:buildings,id'],
+			'room_id' => ['nullable','exists:rooms,id'],
+			'name' => ['required','string','max:255'],
+			'status' => ['required','in:online,offline,maintenance'],
+			'rtsp_url' => ['required','string'],
+			'ip_address' => ['nullable','ip'],
+		]);
+		$cctv = Cctv::create($validated);
+		if ($request->expectsJson()) {
+			return response()->json(['data' => $cctv], 201);
+		}
+		session()->flash('success', 'CCTV created successfully');
+		return redirect()->route('admin.cctvs.index');
 	}
 
 	public function show(Cctv $cctv)
@@ -35,12 +48,29 @@ class CctvController extends Controller
 
 	public function update(Request $request, Cctv $cctv)
 	{
-		return back();
+		$validated = $request->validate([
+			'building_id' => ['required','exists:buildings,id'],
+			'room_id' => ['nullable','exists:rooms,id'],
+			'name' => ['required','string','max:255'],
+			'status' => ['required','in:online,offline,maintenance'],
+			'rtsp_url' => ['required','string'],
+			'ip_address' => ['nullable','ip'],
+		]);
+		$cctv->update($validated);
+		if ($request->expectsJson()) {
+			return response()->json(['data' => $cctv], 200);
+		}
+		session()->flash('success', 'CCTV updated successfully');
+		return redirect()->route('admin.cctvs.index');
 	}
 
 	public function destroy(Cctv $cctv)
 	{
 		$cctv->delete();
+		if (request()->expectsJson()) {
+			return response()->json([], 204);
+		}
+		session()->flash('success', 'CCTV deleted');
 		return back();
 	}
 }

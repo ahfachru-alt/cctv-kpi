@@ -20,7 +20,17 @@ class RoomController extends Controller
 
 	public function store(Request $request)
 	{
-		return back();
+		$validated = $request->validate([
+			'building_id' => ['required','exists:buildings,id'],
+			'name' => ['required','string','max:255'],
+			'floor' => ['required','integer','min:1'],
+		]);
+		$room = Room::create($validated);
+		if ($request->expectsJson()) {
+			return response()->json(['data' => $room], 201);
+		}
+		session()->flash('success', 'Room created successfully');
+		return redirect()->route('admin.rooms.index');
 	}
 
 	public function show(Room $room)
@@ -35,12 +45,26 @@ class RoomController extends Controller
 
 	public function update(Request $request, Room $room)
 	{
-		return back();
+		$validated = $request->validate([
+			'building_id' => ['required','exists:buildings,id'],
+			'name' => ['required','string','max:255'],
+			'floor' => ['required','integer','min:1'],
+		]);
+		$room->update($validated);
+		if ($request->expectsJson()) {
+			return response()->json(['data' => $room], 200);
+		}
+		session()->flash('success', 'Room updated successfully');
+		return redirect()->route('admin.rooms.index');
 	}
 
 	public function destroy(Room $room)
 	{
 		$room->delete();
+		if (request()->expectsJson()) {
+			return response()->json([], 204);
+		}
+		session()->flash('success', 'Room deleted');
 		return back();
 	}
 }
