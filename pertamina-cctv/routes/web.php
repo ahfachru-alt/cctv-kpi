@@ -51,7 +51,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
 });
 
 // Maps and user pages
-Route::get('/maps', \App\Livewire\User\Maps\Index::class)->middleware(['auth','verified'])->name('user.maps');
+Route::view('/maps', 'User/Maps/index')->middleware(['auth','verified'])->name('user.maps');
 Route::get('/stream/{cctv}', [\App\Http\Controllers\StreamController::class, 'hls'])->middleware(['auth','verified'])->name('stream.hls');
 Route::get('/export/users', [\App\Http\Controllers\ExportController::class, 'users'])->middleware(['auth','verified'])->name('export.users');
 Route::get('/export/cctvs', [\App\Http\Controllers\ExportController::class, 'cctvs'])->middleware(['auth','verified'])->name('export.cctvs');
