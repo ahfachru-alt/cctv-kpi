@@ -51,6 +51,16 @@
 
 			<!-- Content -->
 			<main class="flex-1 min-w-0">
+				@if (session('success'))
+					<div class="p-4">
+						<div class="rounded border border-emerald-200 bg-emerald-50 text-emerald-800 px-4 py-2">{{ session('success') }}</div>
+					</div>
+				@endif
+				@if (session('error'))
+					<div class="p-4">
+						<div class="rounded border border-red-200 bg-red-50 text-red-800 px-4 py-2">{{ session('error') }}</div>
+					</div>
+				@endif
 				@yield('content')
 			</main>
 		</div>

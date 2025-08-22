@@ -29,6 +29,16 @@
             @endif
 
             <!-- Page Content -->
+            @if (session('success'))
+                <div class="max-w-7xl mx-auto mt-4 px-4 sm:px-6 lg:px-8">
+                    <div class="rounded border border-emerald-200 bg-emerald-50 text-emerald-800 px-4 py-2">{{ session('success') }}</div>
+                </div>
+            @endif
+            @if (session('error'))
+                <div class="max-w-7xl mx-auto mt-4 px-4 sm:px-6 lg:px-8">
+                    <div class="rounded border border-red-200 bg-red-50 text-red-800 px-4 py-2">{{ session('error') }}</div>
+                </div>
+            @endif
             <main>
                 {{ $slot }}
             </main>
