@@ -11,8 +11,17 @@ class Table extends Component
 	use WithPagination;
 
 	public string $q = '';
+	protected $listeners = ['deleteBuilding' => 'delete'];
 
 	public function updatingQ(){ $this->resetPage(); }
+
+	public function delete(int $id): void
+	{
+		if ($id && ($b = Building::find($id))) {
+			$b->delete();
+			$this->resetPage();
+		}
+	}
 
 	public function render()
 	{
