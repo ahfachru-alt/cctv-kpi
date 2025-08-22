@@ -33,6 +33,12 @@
 							<span>Table User</span>
 						</span>
 					</a>
+					<a class="block px-3 py-2 rounded hover:bg-gray-100 dark:hover:bg-gray-700" href="{{ route('admin.table') }}">
+						<span class="inline-flex items-center gap-2">
+							<svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 3h18M3 9h18M3 15h18"/></svg>
+							<span>User Online/Offline</span>
+						</span>
+					</a>
 					<div class="text-xs uppercase tracking-wide text-gray-500 mt-4">User</div>
 					<a class="block px-3 py-2 rounded hover:bg-gray-100 dark:hover:bg-gray-700" href="{{ route('admin.users.index') }}">
 						<span class="inline-flex items-center gap-2">
