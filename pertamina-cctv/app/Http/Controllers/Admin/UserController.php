@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -20,7 +21,21 @@ class UserController extends Controller
 
 	public function store(Request $request)
 	{
-		return back();
+		$validated = $request->validate([
+			'name' => ['required','string','max:255'],
+			'email' => ['required','email','max:255','unique:users,email'],
+			'password' => ['required','confirmed','min:8'],
+		]);
+		$user = User::create([
+			'name' => $validated['name'],
+			'email' => $validated['email'],
+			'password' => Hash::make($validated['password']),
+		]);
+		if ($request->expectsJson()) {
+			return response()->json(['data' => $user], 201);
+		}
+		session()->flash('success', 'User created successfully');
+		return redirect()->route('admin.users.index');
 	}
 
 	public function show(User $user)
@@ -35,12 +50,33 @@ class UserController extends Controller
 
 	public function update(Request $request, User $user)
 	{
-		return back();
+		$validated = $request->validate([
+			'name' => ['required','string','max:255'],
+			'email' => ['required','email','max:255','unique:users,email,'.$user->id],
+			'password' => ['nullable','confirmed','min:8'],
+		]);
+		$payload = [
+			'name' => $validated['name'],
+			'email' => $validated['email'],
+		];
+		if (! empty($validated['password'])) {
+			$payload['password'] = Hash::make($validated['password']);
+		}
+		$user->update($payload);
+		if ($request->expectsJson()) {
+			return response()->json(['data' => $user], 200);
+		}
+		session()->flash('success', 'User updated successfully');
+		return redirect()->route('admin.users.index');
 	}
 
 	public function destroy(User $user)
 	{
 		$user->delete();
+		if (request()->expectsJson()) {
+			return response()->json([], 204);
+		}
+		session()->flash('success', 'User deleted');
 		return back();
 	}
 }
