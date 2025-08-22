@@ -32,6 +32,9 @@
 		$wire.on('refreshMap', () => {
 			renderMarkers(@js($buildings));
 		});
+		Livewire.hook('morph.updated', () => {
+			renderMarkers(@js($buildings));
+		});
 
 		let markersGroup;
 		function renderMarkers(buildings){

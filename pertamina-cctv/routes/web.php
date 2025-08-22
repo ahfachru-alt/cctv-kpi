@@ -22,6 +22,17 @@ Route::view('profile', 'profile')
 
 require __DIR__.'/auth.php';
 
+// User pages
+Route::view('user/locations', 'User/Location/index')->middleware(['auth','verified'])->name('user.locations');
+Route::get('user/rooms/{building}', function(\App\Models\Building $building){
+    return view('User/Room/index', ['building' => $building, 'rooms' => $building->rooms()->orderBy('name')->get()]);
+})->middleware(['auth','verified'])->name('user.rooms');
+Route::get('user/cctvs/{building}/{room}', function(\App\Models\Building $building, \App\Models\Room $room){
+    $cctvs = $room->cctvs()->orderBy('name')->get();
+    return view('User/Cctv/index', compact('building','room','cctvs'));
+})->middleware(['auth','verified'])->name('user.cctvs');
+Route::view('user/contact', 'User/Contact/index')->middleware(['auth','verified'])->name('user.contact');
+
 // Admin authentication routes
 Route::prefix('admin')->name('admin.')->group(function () {
     Route::get('/login', [AdminAuthController::class, 'showLogin'])->name('login');
