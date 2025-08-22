@@ -56,6 +56,8 @@ Route::get('/stream/{cctv}', [\App\Http\Controllers\StreamController::class, 'hl
 Route::get('/export/users', [\App\Http\Controllers\ExportController::class, 'users'])->middleware(['auth','verified'])->name('export.users');
 Route::get('/export/cctvs', [\App\Http\Controllers\ExportController::class, 'cctvs'])->middleware(['auth','verified'])->name('export.cctvs');
 Route::get('/chat', \App\Livewire\Chat\Panel::class)->middleware(['auth','verified'])->name('chat.panel');
+Route::view('/notifications', 'User/Notification/index')->middleware(['auth','verified'])->name('user.notifications');
+Route::view('/admin/notifications', 'Admin/Notification/index')->middleware(['auth','verified','role:admin'])->name('admin.notifications');
 
 // Google Identity Services token endpoint
 Route::post('/auth/google/token', [GoogleAuthController::class, 'tokenLogin'])->name('google.token');

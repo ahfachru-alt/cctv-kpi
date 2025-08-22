@@ -36,7 +36,7 @@
 					<a class="block px-3 py-2 rounded hover:bg-gray-100 dark:hover:bg-gray-700" href="{{ route('admin.contacts.index') }}">Contact List</a>
 					<a class="block px-3 py-2 rounded hover:bg-gray-100 dark:hover:bg-gray-700" href="{{ route('admin.contacts.create') }}">Create Contact</a>
 					<div class="text-xs uppercase tracking-wide text-gray-500 mt-4">Notification</div>
-					<a class="block px-3 py-2 rounded hover:bg-gray-100 dark:hover:bg-gray-700" href="#">Notifications</a>
+					<a class="block px-3 py-2 rounded hover:bg-gray-100 dark:hover:bg-gray-700" href="{{ route('admin.notifications') }}">Notifications</a>
 					<div class="text-xs uppercase tracking-wide text-gray-500 mt-4">Message</div>
 					<a class="block px-3 py-2 rounded hover:bg-gray-100 dark:hover:bg-gray-700" href="{{ route('chat.panel') }}">Messages</a>
 					<div class="text-xs uppercase tracking-wide text-gray-500 mt-4">Theme</div>
