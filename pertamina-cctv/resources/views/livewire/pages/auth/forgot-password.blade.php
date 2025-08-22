@@ -58,4 +58,49 @@ new #[Layout('layouts.guest')] class extends Component
             </x-primary-button>
         </div>
     </form>
+
+    <div class="my-6 h-px bg-gray-200 dark:bg-gray-700"></div>
+
+    <div class="mb-2 text-sm text-gray-600 dark:text-gray-400">
+        Atau gunakan OTP untuk reset password:
+    </div>
+    <form method="POST" action="{{ route('password.otp.request') }}" class="space-y-3">
+        @csrf
+        <div>
+            <x-input-label for="otp_email" :value="__('Email')" />
+            <x-text-input id="otp_email" class="block mt-1 w-full" type="email" name="email" required />
+        </div>
+        <x-primary-button type="submit">Kirim Kode OTP</x-primary-button>
+    </form>
+
+    <form method="POST" action="{{ route('password.otp.verify') }}" class="space-y-3 mt-4">
+        @csrf
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+            <div>
+                <x-input-label for="verify_email" :value="__('Email')" />
+                <x-text-input id="verify_email" class="block mt-1 w-full" type="email" name="email" required />
+            </div>
+            <div>
+                <x-input-label for="code" :value="__('Kode OTP')" />
+                <x-text-input id="code" class="block mt-1 w-full" type="text" name="code" required />
+            </div>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+            <div>
+                <x-input-label for="password" :value="__('Password Baru')" />
+                <x-text-input id="password" class="block mt-1 w-full" type="password" name="password" required />
+            </div>
+            <div>
+                <x-input-label for="password_confirmation" :value="__('Konfirmasi Password')" />
+                <x-text-input id="password_confirmation" class="block mt-1 w-full" type="password" name="password_confirmation" required />
+            </div>
+        </div>
+        @if (session('success'))
+            <div class="rounded border border-emerald-200 bg-emerald-50 text-emerald-800 px-4 py-2">{{ session('success') }}</div>
+        @endif
+        @if (session('error'))
+            <div class="rounded border border-red-200 bg-red-50 text-red-800 px-4 py-2">{{ session('error') }}</div>
+        @endif
+        <x-primary-button type="submit">Verifikasi OTP & Reset</x-primary-button>
+    </form>
 </div>

@@ -54,6 +54,10 @@ Route::prefix('admin')->name('admin.')->group(function () {
 // Maps and user pages
 Route::view('/maps', 'User/Maps/index')->middleware(['auth','verified'])->name('user.maps');
 Route::get('/stream/{cctv}', [\App\Http\Controllers\StreamController::class, 'hls'])->middleware(['auth','verified'])->name('stream.hls');
+
+// Password OTP routes
+Route::post('/password/otp/request', [\App\Http\Controllers\PasswordOtpController::class, 'requestOtp'])->middleware('guest')->name('password.otp.request');
+Route::post('/password/otp/verify', [\App\Http\Controllers\PasswordOtpController::class, 'verifyOtp'])->middleware('guest')->name('password.otp.verify');
 Route::get('/export/users', [\App\Http\Controllers\ExportController::class, 'users'])->middleware(['auth','verified'])->name('export.users');
 Route::get('/export/cctvs', [\App\Http\Controllers\ExportController::class, 'cctvs'])->middleware(['auth','verified'])->name('export.cctvs');
 Route::get('/chat', \App\Livewire\Chat\Panel::class)->middleware(['auth','verified'])->name('chat.panel');
