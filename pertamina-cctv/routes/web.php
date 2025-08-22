@@ -25,6 +25,12 @@ require __DIR__.'/auth.php';
 // Admin authentication routes
 Route::prefix('admin')->name('admin.')->group(function () {
     Route::get('/login', [AdminAuthController::class, 'showLogin'])->name('login');
+    Route::view('/register', 'admin/auth/register')->name('register');
+    Route::view('/forgot-password', 'admin/auth/forgot-password')->name('password.request');
+    Route::view('/reset-password/{token}', 'admin/auth/reset-password')->name('password.reset');
+    Route::view('/verify-email', 'admin/auth/verify-email')->middleware(['auth'])->name('verification.notice');
+    Route::view('/confirm-password', 'admin/auth/confirm-password')->middleware(['auth'])->name('password.confirm');
+
     Route::resource('users', \App\Http\Controllers\Admin\UserController::class)->middleware(['auth','role:admin']);
     Route::resource('buildings', \App\Http\Controllers\Admin\BuildingController::class)->middleware(['auth','role:admin']);
     Route::resource('rooms', \App\Http\Controllers\Admin\RoomController::class)->middleware(['auth','role:admin']);
