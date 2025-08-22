@@ -10,7 +10,16 @@ class Table extends Component
 {
 	use WithPagination;
 	public string $q = '';
+	protected $listeners = ['deleteContact' => 'delete'];
 	public function updatingQ(){ $this->resetPage(); }
+
+	public function delete(int $id): void
+	{
+		if ($id && ($c = Contact::find($id))) {
+			$c->delete();
+			$this->resetPage();
+		}
+	}
 
 	public function render()
 	{

@@ -34,8 +34,10 @@ class Form extends Component
 		]);
 		if ($this->building) {
 			$this->building->update($data);
+			session()->flash('success', 'Building updated successfully');
 		} else {
 			Building::create($data);
+			session()->flash('success', 'Building created successfully');
 		}
 		return redirect()->route('admin.buildings.index');
 	}

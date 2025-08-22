@@ -31,8 +31,10 @@ class Form extends Component
 		]);
 		if ($this->room) {
 			$this->room->update($data);
+			session()->flash('success', 'Room updated successfully');
 		} else {
 			Room::create($data);
+			session()->flash('success', 'Room created successfully');
 		}
 		return redirect()->route('admin.rooms.index');
 	}

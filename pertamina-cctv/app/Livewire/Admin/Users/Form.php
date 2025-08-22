@@ -43,12 +43,14 @@ class Form extends Component
 				'name' => $this->name,
 				'email' => $this->email,
 			]);
+			session()->flash('success', 'User updated successfully');
 		} else {
 			User::create([
 				'name' => $this->name,
 				'email' => $this->email,
 				'password' => Hash::make($this->password),
 			]);
+			session()->flash('success', 'User created successfully');
 		}
 
 		return redirect()->route('admin.users.index');

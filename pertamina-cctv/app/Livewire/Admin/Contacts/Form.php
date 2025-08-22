@@ -40,8 +40,10 @@ class Form extends Component
 		]);
 		if ($this->contact) {
 			$this->contact->update($data);
+			session()->flash('success', 'Contact updated successfully');
 		} else {
 			Contact::create($data);
+			session()->flash('success', 'Contact created successfully');
 		}
 		return redirect()->route('admin.contacts.index');
 	}

@@ -12,9 +12,18 @@ class Table extends Component
 
 	public string $q = '';
 	public string $status = 'all';
+	protected $listeners = ['deleteCctv' => 'delete'];
 
 	public function updatingQ(){ $this->resetPage(); }
 	public function updatingStatus(){ $this->resetPage(); }
+
+	public function delete(int $id): void
+	{
+		if ($id && ($c = Cctv::find($id))) {
+			$c->delete();
+			$this->resetPage();
+		}
+	}
 
 	public function render()
 	{

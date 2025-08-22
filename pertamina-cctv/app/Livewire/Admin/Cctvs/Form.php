@@ -40,8 +40,10 @@ class Form extends Component
 		]);
 		if ($this->cctv) {
 			$this->cctv->update($data);
+			session()->flash('success', 'CCTV updated successfully');
 		} else {
 			Cctv::create($data);
+			session()->flash('success', 'CCTV created successfully');
 		}
 		return redirect()->route('admin.cctvs.index');
 	}
