@@ -75,6 +75,10 @@ new class extends Component
 					</x-slot>
 
 					<x-slot name="content">
+						<div class="px-4 py-2 text-xs text-gray-500 dark:text-gray-400">
+							@php $ll = auth()->user()->last_login_at; @endphp
+							Last login: {{ $ll ? $ll->diffForHumans() : '—' }}
+						</div>
 						<x-dropdown-link :href="route('profile')" wire:navigate>
 							{{ __('Profile') }}
 						</x-dropdown-link>

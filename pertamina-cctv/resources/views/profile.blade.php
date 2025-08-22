@@ -3,6 +3,10 @@
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
             {{ __('Profile') }}
         </h2>
+        <div class="text-xs text-gray-500 dark:text-gray-400 mt-1">
+            @php $ll = auth()->user()->last_login_at; @endphp
+            Last login: {{ $ll ? $ll->diffForHumans() : '—' }}
+        </div>
     </x-slot>
 
     <div class="py-12">
