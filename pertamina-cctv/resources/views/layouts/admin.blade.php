@@ -6,6 +6,7 @@
 		<meta name="csrf-token" content="{{ csrf_token() }}">
 		<title>Admin Panel - {{ config('app.name') }}</title>
 		@vite(['resources/css/app.css','resources/js/app.js'])
+		@fluxStyles
 	</head>
 	<body class="font-sans antialiased">
 		<div class="min-h-screen flex bg-gray-100 dark:bg-gray-900">
@@ -52,5 +53,6 @@
 				@yield('content')
 			</main>
 		</div>
+		@fluxScripts
 	</body>
 </html>
