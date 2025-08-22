@@ -16,11 +16,16 @@
 			</tr>
 		</thead>
 		<tbody>
-			<tr>
-				<td class="px-3 py-2">-</td>
-				<td class="px-3 py-2">-</td>
-				<td class="px-3 py-2">-</td>
+			@foreach($users as $u)
+			<tr class="border-t border-gray-200 dark:border-gray-700">
+				<td class="px-3 py-2">{{ $u->name }}</td>
+				<td class="px-3 py-2">{{ $u->email }}</td>
+				<td class="px-3 py-2">
+					@php $badge = $u->computed_status === 'online' ? 'bg-green-600' : 'bg-red-600'; @endphp
+					<span class="inline-flex items-center px-2 py-0.5 rounded text-xs text-white {{ $badge }}">{{ ucfirst($u->computed_status) }}</span>
+				</td>
 			</tr>
+			@endforeach
 		</tbody>
 	</table>
 </div>
