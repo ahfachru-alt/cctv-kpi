@@ -8,7 +8,7 @@
 		@vite(['resources/css/app.css','resources/js/app.js'])
 		@fluxStyles
 	</head>
-	<body class="font-sans antialiased">
+	<body class="font-sans antialiased" x-data="{ openSidebar: false }">
 		<div class="min-h-screen flex bg-gray-100 dark:bg-gray-900">
 			<!-- Sidebar -->
 			<aside class="w-72 bg-white/95 dark:bg-gray-800/95 backdrop-blur border-r border-gray-200 dark:border-gray-700 hidden md:flex md:flex-col">
@@ -79,7 +79,7 @@
 							<span>Contact List</span>
 						</span>
 					</a>
-					<a class="block px-3 py-2 rounded hover:bg-gray-100 dark:hover:bg-gray-700" href="{{ route('admin.contacts.create') }}">
+					<a class="block px-3 py-2 rounded hover:bg-gray-100 dark:hoverbg-gray-700" href="{{ route('admin.contacts.create') }}">
 						<span class="inline-flex items-center gap-2">
 							<svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 4.5v15m7.5-7.5h-15"/></svg>
 							<span>Create Contact</span>
@@ -108,8 +108,36 @@
 				</nav>
 			</aside>
 
+			<!-- Mobile Off-canvas Sidebar -->
+			<div class="md:hidden" x-show="openSidebar" x-transition.opacity class="fixed inset-0 z-40">
+				<div class="absolute inset-0 bg-black/50" @click="openSidebar=false"></div>
+				<div class="absolute inset-y-0 left-0 w-72 bg-white dark:bg-gray-800 border-r dark:border-gray-700 p-4 overflow-y-auto">
+					<div class="flex items-center justify-between h-12 mb-2">
+						<div class="flex items-center gap-2">
+							<img src="/Pertamina.png" class="w-6 h-6" alt="Pertamina" />
+							<div class="text-sm font-semibold">Admin Panel</div>
+						</div>
+						<button class="p-2" @click="openSidebar=false">
+							<svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M6 18L18 6M6 6l12 12"/></svg>
+						</button>
+					</div>
+					<!-- reuse the same nav by server-side include -->
+					@include('layouts.partials.admin-nav')
+				</div>
+			</div>
+
 			<!-- Content -->
 			<main class="flex-1 min-w-0">
+				<!-- Mobile Topbar -->
+				<div class="md:hidden h-14 bg-white dark:bg-gray-800 border-b dark:border-gray-700 flex items-center justify-between px-3">
+					<button class="p-2" @click="openSidebar=true">
+						<svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 6h16M4 12h16M4 18h16"/></svg>
+					</button>
+					<div class="text-sm font-semibold">Admin Panel</div>
+					<a href="{{ route('dashboard') }}" class="p-2">
+						<svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3.75 6.75h16.5M3.75 12h16.5M3.75 17.25h16.5"/></svg>
+					</a>
+				</div>
 				@if (session('success'))
 					<div class="p-4">
 						<div class="rounded border border-emerald-200 bg-emerald-50 text-emerald-800 px-4 py-2">{{ session('success') }}</div>
