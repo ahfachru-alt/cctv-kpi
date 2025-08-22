@@ -17,7 +17,7 @@
     </head>
     <body class="font-sans text-gray-900 antialiased">
         <div class="min-h-screen relative flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-gray-100 dark:bg-gray-900">
-            <img src="/kilang.png" alt="kilang" class="absolute inset-0 w-full h-full object-cover opacity-30 dark:opacity-40" />
+            <img src="/kilang.png" alt="kilang" class="absolute inset-0 w-full h-full object-cover opacity-30 dark:opacity-40 blur-sm scale-105" />
             <div class="relative z-10">
                 <a href="/" wire:navigate class="flex items-center gap-3">
                     <img src="/Pertamina.png" alt="Pertamina" class="w-16 h-16" />
