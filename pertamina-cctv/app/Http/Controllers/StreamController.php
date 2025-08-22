@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Notification;
 use App\Notifications\StreamStartedNotification;
 use App\Models\User;
+use Illuminate\Support\Facades\Log;
 
 class StreamController extends Controller
 {
@@ -28,7 +29,12 @@ class StreamController extends Controller
 				escapeshellarg($rtsp),
 				escapeshellarg($playlist)
 			);
-			exec($cmd);
+			try {
+				exec($cmd);
+				Log::info('FFmpeg started for CCTV stream', ['cctv_id' => $cctv->id, 'ip' => $cctv->ip_address]);
+			} catch (\Throwable $e) {
+				Log::error('FFmpeg failed to start', ['cctv_id' => $cctv->id, 'error' => $e->getMessage()]);
+			}
 
 			// Notify all admins that a stream has started
 			$admins = User::role('admin')->get();
