@@ -1,7 +1,6 @@
 <?php
 
 use App\Http\Controllers\Admin\AuthController as AdminAuthController;
-use App\Http\Controllers\GoogleAuthController;
 use Illuminate\Support\Facades\Route;
 
 Route::view('/', 'welcome');
@@ -56,6 +55,3 @@ Route::get('/export/cctvs', [\App\Http\Controllers\ExportController::class, 'cct
 Route::get('/chat', \App\Livewire\Chat\Panel::class)->middleware(['auth', 'verified'])->name('chat.panel');
 Route::view('/notifications', 'User/Notification/index')->middleware(['auth', 'verified'])->name('user.notifications');
 Route::view('/admin/notifications', 'Admin/Notification/index')->middleware(['auth', 'verified', 'role:admin'])->name('admin.notifications');
-
-// Google Identity Services token endpoint
-Route::post('/auth/google/token', [GoogleAuthController::class, 'tokenLogin'])->name('google.token');
