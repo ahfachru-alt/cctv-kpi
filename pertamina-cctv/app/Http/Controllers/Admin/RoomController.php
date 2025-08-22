@@ -3,63 +3,44 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Room;
 use Illuminate\Http\Request;
 
 class RoomController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
-    {
-        //
-    }
+	public function index()
+	{
+		return view('Admin/Location/index');
+	}
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
+	public function create()
+	{
+		return view('Admin/Location/creat');
+	}
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
+	public function store(Request $request)
+	{
+		return back();
+	}
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
+	public function show(Room $room)
+	{
+		return redirect()->route('admin.rooms.edit', $room);
+	}
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
+	public function edit(Room $room)
+	{
+		return view('Admin/Location/edit', compact('room'));
+	}
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
+	public function update(Request $request, Room $room)
+	{
+		return back();
+	}
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
-    }
+	public function destroy(Room $room)
+	{
+		$room->delete();
+		return back();
+	}
 }
