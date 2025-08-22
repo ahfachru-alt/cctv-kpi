@@ -42,6 +42,15 @@ new class extends Component
 					<x-nav-link :href="route('user.contact')" :active="request()->routeIs('user.contact')" wire:navigate>
 						Kontak
 					</x-nav-link>
+					<x-nav-link :href="route('chat.panel')" :active="request()->routeIs('chat.panel')" wire:navigate>
+						<div class="inline-flex items-center gap-2">
+							<span>Pesan</span>
+							@php $chatUnread = \App\Models\Message::where('to_user_id', auth()->id())->whereNull('read')->count(); @endphp
+							@if($chatUnread > 0)
+								<span class="inline-flex items-center justify-center min-w-5 h-5 px-1 rounded-full text-xs text-white bg-emerald-600">{{ $chatUnread }}</span>
+							@endif
+						</div>
+					</x-nav-link>
 					<x-nav-link :href="route('user.notifications')" :active="request()->routeIs('user.notifications')" wire:navigate>
 						<div class="inline-flex items-center gap-2">
 							<span>Notifikasi</span>
@@ -69,8 +78,8 @@ new class extends Component
 							<div class="ms-1">
 								<svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
 									<path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a 1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
-								</svg>
-							</div>
+							</svg>
+						</div>
 						</button>
 					</x-slot>
 
@@ -119,6 +128,9 @@ new class extends Component
 			</x-responsive-nav-link>
 			<x-responsive-nav-link :href="route('user.contact')" :active="request()->routeIs('user.contact')" wire:navigate>
 				Kontak
+			</x-responsive-nav-link>
+			<x-responsive-nav-link :href="route('chat.panel')" :active="request()->routeIs('chat.panel')" wire:navigate>
+				Pesan
 			</x-responsive-nav-link>
 			<x-responsive-nav-link :href="route('user.notifications')" :active="request()->routeIs('user.notifications')" wire:navigate>
 				Notifikasi

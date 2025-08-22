@@ -20,6 +20,21 @@ class Panel extends Component
 		}
 	}
 
+	public function updatedToUserId(): void
+	{
+		$this->markConversationRead();
+	}
+
+	public function markConversationRead(): void
+	{
+		if ($this->toUserId) {
+			Message::where('from_user_id', $this->toUserId)
+				->where('to_user_id', Auth::id())
+				->whereNull('read')
+				->update(['read' => now()]);
+		}
+	}
+
 	public function send()
 	{
 		$this->validate(['message' => 'required|string|min:1']);
@@ -35,6 +50,7 @@ class Panel extends Component
 			$recipient->notify(new MessageReceivedNotification(Auth::user()->name, mb_strimwidth($this->message, 0, 80, '…')));
 		}
 		$this->message = '';
+		$this->markConversationRead();
 	}
 
 	public function render()
